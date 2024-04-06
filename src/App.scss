@@ -1,0 +1,140 @@
+@import 'config';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    @include flex-centered;
+    display: grid;
+    background: $secondary-color;
+    font-size: 24px;
+}
+
+main {
+    padding: 20px 10px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    background-image: radial-gradient(circle at center, #4169e1 50%, $secondary-color);
+}
+
+#title {
+    -webkit-text-stroke-width: 0.001px;
+    -webkit-text-stroke-color: white;
+    color: #317773;
+    position: relative;
+    font-family: $secondary-font;
+    margin-bottom: 5vh;
+}
+
+.fruit {
+    width: 100px;
+    height: 100px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+    background: #634a3f;
+    padding: 50px;
+    border: 6px rgb(4, 4, 33) solid;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2)
+}
+
+.card {
+    @include flex-centered;
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+    border-radius: 0.2em;
+    &__front, &__back{
+        @include flex-centered;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        background: inherit;
+        border-radius: inherit;
+    }
+    &__front {
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+    &__back{
+        background: inherit;
+        transform: rotateY(180deg);
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+#result {
+    color: $primary-color;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-size: 1.5em;
+}
+
+#restart-btn {
+    padding: 1em;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background: $primary-color;
+    border-radius: 0.2em;
+    cursor: pointer;
+    box-shadow: 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.message {
+    color: $primary-color;
+    font-size: 1em;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: white;
+    margin-top: 0.2em;
+}
+
+.blinking {
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0% {
+        border: 1px black solid;
+    }
+    50%{
+        border: 1px white solid;
+    }
+    100% {
+        border: 1px black solid;
+    }
+}
+
+@media (max-width: 640px){
+    #title {
+        font-size: 1.5em;
+    }
+    .grid {
+        gap: 0.5em;
+        padding: 10%;
+    }
+    .card, .fruit {
+        width: 70px;
+        height: 70px;
+    }
+    #restart-btn {
+        padding: 0.8em;
+        font-size: 0.8em;
+    }
+}
+
